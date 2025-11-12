@@ -3,7 +3,7 @@ import './NavBar.css';
 
 
 const NavBar = () => {
-  console.log(navbarlinks); // ✅ para verificar importación
+  console.log(navbarlinks); 
 
   return (
     <nav className="navbar">
