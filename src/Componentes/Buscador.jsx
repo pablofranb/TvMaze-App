@@ -2,7 +2,7 @@
 import Busquedas from './Busquedas.jsx'
 
  import {useState} from "react"
-    const Buscador=()=>{
+    const Buscador=({ favoritas, setFavoritas})=>{
         const[busqueda,setbusqueda]=useState("");//para ir guardando la busqueda y lo inicio vacio
         const[series,setseries]=useState([]); //aqui guardare mis series del fetch, array vacio para que tenga tamaño
         let aux;//aqui guardare mi contenido para el if
@@ -26,7 +26,12 @@ import Busquedas from './Busquedas.jsx'
             aux=<p>No Hay resultados</p>
         }
         else{
-           aux= series.map(item =>(<Busquedas key={item.show.id} serie={item}></Busquedas>))
+           aux= series.map(item =>(<Busquedas
+                key={item.show.id}
+                serie={item}
+                favoritas={favoritas}
+                setFavoritas={setFavoritas}
+            />))
         }
         
         
