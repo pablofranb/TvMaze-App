@@ -6,6 +6,7 @@ import './App.css'
 
 import NavBar from './Componentes/NavBar.jsx' //importamos el
 import Buscador from './Componentes/Buscador.jsx'
+import Favoritos from './Componentes/Favoritos.jsx';
 function App() {
   const [count, setCount] = useState(0)
   const title="Pagina de busqueda de TVmaze"
@@ -27,6 +28,7 @@ function App() {
       <NavBar/>
       <Buscador favoritas={favoritas}
         setFavoritas={setFavoritas}/>
+        <Favoritos favoritas={favoritas}/>
    </>
    
   )

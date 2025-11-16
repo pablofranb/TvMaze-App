@@ -1,0 +1,14 @@
+.Seriesfav {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.fav {
+  display: inline-block;
+  margin: 15px;
+}
+
+.fav img {
+  width: 150px;
+  border-radius: 8px;
+}

@@ -12,7 +12,7 @@ import Busquedas from './Busquedas.jsx'
         }            
         const BuscarSeries= async (e)=>{  //he visto que await para la funcio hasta completarse y que necesita si o si el async
             e.preventDefault();
-            const aux= await fetch(`https://api.tvmaze.com/search/shows?q=${busqueda}`)//recibimos los datos filtrando por busqueda
+            const aux= await fetch(`https://api.tvmaze.com/search/shows?q=${busqueda}`)//recibimo los datos filtrando por busqueda
             const datos= await aux.json() //necesito el json no el array
             setseries(datos)//meto en el series mis datos
         
