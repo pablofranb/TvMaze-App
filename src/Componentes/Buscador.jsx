@@ -17,10 +17,6 @@ import Busquedas from './Busquedas.jsx'
             setseries(datos)//meto en el series mis datos
         
         }
-        const mapearseries=(series)=>{
-            datos.map(item)
-            
-        }
         
         if (series.length ===0){
             aux=<p>No Hay resultados</p>

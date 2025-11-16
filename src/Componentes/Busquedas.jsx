@@ -5,15 +5,17 @@ const Busquedas=({serie,favoritas, setFavoritas})=>{  //a busqueda le paso las s
     //devuelvo el bloque con imagen y nombre
     const [info,setInfo]= useState(false);
     const [like,setLike]=useState(false);
-  
+    const [detalle, setDetalle] = useState(null); //para la informacion detallada
     useEffect(() => {
         localStorage.setItem("favoritos", JSON.stringify(favoritas));
     }, [favoritas]);   //cada vez que modifico favoritas lo añado al local storage
         
-    const mostrarInfo=()=>{
+    const mostrarInfo= async ()=>{
       if(info===false){
         setInfo(true);
-        
+        const res = await fetch(`https://api.tvmaze.com/shows/${serie.show.id}`);//cada vez que se toca la imagen de la serie abrimos la api
+        const data = await res.json();
+        setDetalle(data); //guardamos en detalle el resultado
       }
       else{
         setInfo(false);
@@ -44,17 +46,17 @@ const Busquedas=({serie,favoritas, setFavoritas})=>{  //a busqueda le paso las s
       <button id="fav" onClick={favoritos}> {like ? '❤️ Me gusta':'🤍 No me gusta'} </button>
       
       
-      {info &&( //si info es true se muestra
-        <div className="Informacionporserie"> 
-        <h4> INFORMACION </h4>
-        <p>IDIOMA: {serie.show.language}</p>
-        <p><b>Géneros:</b> {serie.show.genres.join(", ")}</p>
-          <p>
-            <b>Resumen:</b>{" "}
-            {serie.show.summary}
-          </p>
+      {info && detalle && (
+        <div className="Informacionporserie">
+        <h4> INFORMACIÓN DETALLADA </h4>
+
+          <p><b>Idioma:</b> {detalle.language}</p>
+          <p><b>Géneros:</b> {detalle.genres.join(", ")}</p>
+          <p><b>Rating:</b> {detalle.rating?.average || "No disponible"}</p>
+          <p><b>Estreno:</b> {detalle.premiered}</p>
+          <p><b>Resumen:</b> {detalle.summary}</p>
         </div>
-      )}
+    )}
     </div>
   )
 }
